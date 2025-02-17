@@ -123,6 +123,8 @@ class MainActivity : AppCompatActivity() {
             R.id.save_profile -> showSaveDialog()
 
             R.id.reload_defaults -> showReloadDialog()
+
+            R.id.help -> showHelp()
         }
 
         return true
@@ -180,5 +182,10 @@ class MainActivity : AppCompatActivity() {
 
             it.show()
         }
+    }
+
+    private fun showHelp() {
+        val intent = Intent(this, HelpActivity::class.java)
+        startActivity(intent)
     }
 }

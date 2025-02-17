@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -12,6 +11,7 @@
     <queries>
         <intent>
             <action android:name="android.intent.action.MAIN" />
+
             <category android:name="android.intent.category.LAUNCHER" />
         </intent>
     </queries>
@@ -24,45 +24,47 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.OpenSSTPClient"
         tools:targetApi="n">
-
         <activity
-            android:exported="true"
-            android:name=".activity.MainActivity">
+            android:name=".activity.HelpActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
             <intent-filter>
                 <action android:name="android.service.quicksettings.action.QS_TILE_PREFERENCES" />
             </intent-filter>
         </activity>
-
         <activity
-            android:exported="false"
-            android:name=".activity.BlankActivity">
-        </activity>
+            android:name=".activity.BlankActivity"
+            android:exported="false"></activity>
 
         <service
+            android:name=".service.SstpVpnService"
             android:exported="true"
             android:foregroundServiceType="specialUse"
-            android:name=".service.SstpVpnService"
             android:permission="android.permission.BIND_VPN_SERVICE">
             <intent-filter>
                 <action android:name="android.net.VpnService" />
             </intent-filter>
         </service>
-
         <service
-            android:exported="true"
             android:name=".service.SstpTileService"
+            android:exported="true"
             android:icon="@drawable/ic_baseline_vpn_lock_24"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
             <intent-filter>
                 <action android:name="android.service.quicksettings.action.QS_TILE" />
             </intent-filter>
+
             <meta-data
                 android:name="android.service.quicksettings.ACTIVE_TILE"
                 android:value="true" />
         </service>
     </application>
+
 </manifest>
