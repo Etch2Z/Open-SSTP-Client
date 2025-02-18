@@ -19,7 +19,7 @@ class HelpActivity : AppCompatActivity() {
         }
     }
 
-    fun closeHelp(view: View) {
+    fun closeHelp() {
         finish()
     }
 }
