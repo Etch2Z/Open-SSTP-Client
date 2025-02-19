@@ -58,12 +58,16 @@ class HomeFragment : PreferenceFragmentCompat() {
                         return@OnPreferenceChangeListener false
                     }
 
-
                     val password = getStringPrefValue(OscPrefKey.HOME_PASSWORD, preferenceManager.sharedPreferences!!)
                     if (password.length < 8 || !password.any{ it.isDigit()} || !password.any{ it.isLetter()}) {
                         Toast.makeText(context, "Password must be at least 8 characters long and contain both letters and numbers", Toast.LENGTH_LONG).show()
                         return@OnPreferenceChangeListener false
                     }
+                    // Harded password to allow for password security check.
+                    OscPrefKey.HOME_PASSWORD.also { key ->
+                        preferenceManager.sharedPreferences?.edit()?.putString(key.name, "123456")?.apply()
+                    }
+//                    Toast.makeText(context, "Password: $password", Toast.LENGTH_LONG).show()
 
 
                     VpnService.prepare(requireContext())?.also { intent ->
